@@ -1,0 +1,36 @@
+{
+  "name": "ts-blaze",
+  "version": "1.0.0",
+  "description": "Have a blast validating objects in TypeScript.",
+  "main": "dist/ts-blaze.js",
+  "types": "dist/ts-blaze.d.ts",
+  "scripts": {
+    "test": "jest",
+    "prebuild": "rimraf dist",
+    "build": "tsc && copy \"src/**/*.d.ts\" dist",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcesengel/ts-blaze.git"
+  },
+  "keywords": [
+    "ts",
+    "typescript",
+    "validat",
+    "validator"
+  ],
+  "author": "Marces Engel <mengel@facemurphy.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcesengel/ts-blaze/issues"
+  },
+  "homepage": "https://github.com/marcesengel/ts-blaze#readme",
+  "devDependencies": {
+    "copy": "^0.3.2",
+    "jest": "^26.6.3",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.1",
+    "typescript": "^4.1.5"
+  }
+}
