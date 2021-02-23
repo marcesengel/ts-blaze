@@ -37,7 +37,7 @@ The `object` validator matches standard TypeScript behaviour, i.e. it doesn't co
 
 ## Provided Types
 
-Currently the following types are supported: `object`, `array`, `string`, `number`.
+Currently the following types are supported: `object`, `array`, `string`, `number`, `string literal` (using `string('literal')`) and `number literal` (using `number(1)`).
 
 ### Define Your Own
 
