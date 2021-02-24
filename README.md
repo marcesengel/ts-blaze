@@ -40,6 +40,8 @@ The `object` validator matches standard TypeScript behaviour, i.e. it doesn't co
 
 Currently the following types are supported: `object`, `array`, `string`, `number`, `oneOf([ ...unionTypes ])`, `string literal` (using `string('literal')`) and `number literal` (using `number(1)`).
 
+Every type except the literal types support `.satisfies(predicate: (value: T) => boolean)`. In addition `string` supports `.json()` using `JSON.parse(...)` for validation. You can overwrite `JSON.parse(...)` while validating in order to not have to parse complex JSON multiple times (once for validation and once for usage) or use a custom `.satisfies(...)` predicate for that.
+
 ### Define Your Own
 
 ```ts
