@@ -1,7 +1,7 @@
 import transformValidatorName from './transformValidatorName'
 import type { Validator } from './validator'
 
-export { default as object, ObjectValidator } from './validators/object'
+export { default as object, ObjectValidator, ObjectSchema } from './validators/object'
 export { default as array, ArrayValidator } from './validators/array'
 export { default as string, StringValidator } from './validators/string'
 export { default as number, NumberValidator } from './validators/number'

@@ -4,7 +4,7 @@ export interface ObjectValidator<O extends Record<string, unknown> = any> extend
 
 }
 
-type ObjectSchema<O extends Record<string, unknown>> = {
+export type ObjectSchema<O extends Record<string, unknown>> = {
   [Property in keyof O]: Validator<O[Property]>;
 }
 
