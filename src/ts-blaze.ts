@@ -5,6 +5,8 @@ export { default as object, ObjectValidator } from './validators/object'
 export { default as array, ArrayValidator } from './validators/array'
 export { default as string, StringValidator } from './validators/string'
 export { default as number, NumberValidator } from './validators/number'
+export { default as oneOf, UnionTypeValidator } from './validators/union'
+
 export type { Validator } from './validator'
 
 export type InferValidatorType<V> = V extends Validator<infer T>
