@@ -1,4 +1,4 @@
-import type { Validator } from '../validator'
+import { createValidator, Validator } from '../validator'
 
 export interface StringValidator<T extends string> extends Validator<T> {
   
@@ -12,8 +12,11 @@ const createStringValidator = <T extends string = string>(literal?: T): StringVa
     return validateStringLiteral
   }
 
-  const validateString = (value: any): value is T =>
-    typeof value === 'string'
+  const validateString = createValidator<StringValidator<T>>(
+    (validators, applyValidators) =>
+      (value: any): value is T =>
+        typeof value === 'string' && applyValidators(value as T)
+  )
 
   return validateString
 }

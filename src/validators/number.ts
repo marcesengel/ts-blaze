@@ -1,4 +1,4 @@
-import type { Validator } from '../validator'
+import { createValidator, Validator } from '../validator'
 
 export interface NumberValidator<T extends number> extends Validator<T> {
   
@@ -12,8 +12,11 @@ const createNumberValidator = <T extends number = number>(literal?: T): NumberVa
     return validateNumberLiteral
   }
 
-  const validateNumber = (value: any): value is T =>
-    typeof value === 'number'
+  const validateNumber = createValidator<NumberValidator<T>>(
+    (validators, applyValidators) =>
+      (value: any): value is T =>
+        typeof value === 'number' && applyValidators(value as T)
+  )
 
   return validateNumber
 }

@@ -7,7 +7,7 @@ export { default as string, StringValidator } from './validators/string'
 export { default as number, NumberValidator } from './validators/number'
 export { default as oneOf, UnionTypeValidator } from './validators/union'
 
-export type { Validator } from './validator'
+export { Validator } from './validator'
 
 export type InferValidatorType<V> = V extends Validator<infer T>
   ? T
