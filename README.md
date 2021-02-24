@@ -16,18 +16,21 @@ const isHuman = object({
 type Human = InferValidatorType<typeof isHuman>
 
 export const onlyAcceptHumans = (payload: any): Promise<Human> => {
-  const human = ensure(payload, isHuman) // throws if payload doesn't match schema
+  // throw if payload doesn't match schema
+  const human = ensure(payload, isHuman) 
 
-  console.log(`Creating human with name "${human.name}".`) // your IDE/Editor can auto complete this
+  // now your IDE/Editor can also complete this
+  console.log(`Creating human with name "${human.name}".`)
   return db.createHuman(payload)
 }
 
-export const gracefullyHandleBadInput = (payload: any): Promise<Human | void> => {
+export const handleBadInput = (payload: any): Promise<Human | void> => {
   if (isHuman(payload)) {
-    return db.createHuman(payload) // no typescript error
+    // typeguarded -> typeof payload is Human
+    return db.createHuman(payload)
   }
 
-  console.warn('Did not receive a human')
+  console.warn('Did not receive a human.')
   return Promise.resolve()
 }
 ```
