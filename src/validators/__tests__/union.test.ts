@@ -19,4 +19,22 @@ describe('oneOf', () => {
       }
     }
   })
+
+  it('supports type inference in predicates', () => {
+    oneOf([
+      number(),
+      string()
+    ])
+      .satisfies(val => assertType<string | number>(val))
+      // @ts-expect-error
+      .satisfies(val => assertType<string>(val))
+      // @ts-expect-error
+      .satisfies(val => assertType<number>(val))
+      // @ts-expect-error
+      .satisfies(val => assertType<string[]>(val))
+      // @ts-expect-error
+      .satisfies(val => assertType<number[]>(val))
+  })
 })
+
+const assertType = <T>(arg: T): boolean => true

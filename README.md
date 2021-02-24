@@ -11,6 +11,7 @@ import { object, string, number, ensure } from 'ts-blaze'
 const isHuman = object({
   name: string(),
   age: number()
+    .satisfies(val => val >= 0)
 })
 type Human = InferValidatorType<typeof isHuman>
 
@@ -42,22 +43,11 @@ Currently the following types are supported: `object`, `array`, `string`, `numbe
 ### Define Your Own
 
 ```ts
-import type { Validator } from 'ts-blaze'
+import { string } from 'ts-blaze'
+import { validate: isUuid } from 'uuid'
 
-export interface UUIDValidator extends Validator<string> {
-  
-}
-
-const createUuidValidator = (): StringValidator => {
-  const validateUuid = (value: any): value is string => {
-    return typeof value === 'string' &&
-      isUuid(value)
-  }
-
-  return validateUuid
-}
-
-export default createUuidValidator
+export const uuid = string()
+  .satisfies(isUuid)
 ```
 
 ## Options

@@ -1,4 +1,4 @@
-import { createValidator, Validator } from '../validator'
+import { createNotImplementedHandler, createValidator, Validator } from '../validator'
 
 export interface NumberValidator<T extends number> extends Validator<T> {
   
@@ -8,6 +8,9 @@ const createNumberValidator = <T extends number = number>(literal?: T): NumberVa
   if (typeof literal !== 'undefined') {
     const validateNumberLiteral = (value: any): value is T =>
       value === literal
+    
+    const notImplemented = createNotImplementedHandler('number literals')
+    validateNumberLiteral.satisfies = notImplemented
 
     return validateNumberLiteral
   }

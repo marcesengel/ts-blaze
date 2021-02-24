@@ -1,4 +1,4 @@
-import { object, number, string, array, ensure, InferValidatorType } from './ts-blaze'
+import { object, number, string, array, ensure, InferValidatorType } from '../ts-blaze'
 
 describe('ts-blaze', () => {
   test('validator type inference', () => {

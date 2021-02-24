@@ -1,5 +1,5 @@
-import transformValidatorName from './transformValidatorName'
-import { Validator } from './validator'
+import transformValidatorName from '../transformValidatorName'
+import { Validator } from '../validator'
 
 describe('transformValidatorName', () => {
   it('returns the proper names for given mappings', () => {

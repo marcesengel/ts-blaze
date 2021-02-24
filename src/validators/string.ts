@@ -1,4 +1,4 @@
-import { createValidator, Validator } from '../validator'
+import { createValidator, createNotImplementedHandler, Validator } from '../validator'
 
 export interface StringValidator<T extends string> extends Validator<T> {
   
@@ -8,6 +8,9 @@ const createStringValidator = <T extends string = string>(literal?: T): StringVa
   if (typeof literal !== 'undefined') {
     const validateStringLiteral = (value: any): value is T =>
       value === literal
+    
+    const notImplemented = createNotImplementedHandler('string literals')
+    validateStringLiteral.satisfies = notImplemented
 
     return validateStringLiteral
   }
