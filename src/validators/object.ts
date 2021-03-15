@@ -14,7 +14,7 @@ const createObjectValidator = <T extends Record<string, unknown>>(keyValidators:
       (value: any): value is T => {
         return typeof value === 'object' &&
           value !== null &&
-          !Object.entries(keyValidators).map(([ key, validator ]) => validator(value[key])).includes(false) &&
+          Object.entries(keyValidators).every(([ key, validator ]) => validator(value[key])) &&
           applyValidators(value)
       }
   )
