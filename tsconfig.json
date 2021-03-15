@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "target": "ES3",
+    "lib": [ "es2016" ],
     "declaration": true
   },
   "include": [ "src/**/*.ts" ],
