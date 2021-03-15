@@ -6,18 +6,20 @@ It does so by generating [`typeguards`](https://www.typescriptlang.org/docs/hand
 ## Usage
 
 ```ts
-import { object, string, number, ensure } from 'ts-blaze'
+import * as blaze from 'ts-blaze'
 
-const isHuman = object({
-  name: string(),
-  age: number()
-    .satisfies(val => val >= 0)
+const isHuman = blaze.object({
+  name: blaze.string(),
+  age: blaze.optional(
+    blaze.number()
+      .satisfies(val => val >= 0)
+  )
 })
-type Human = InferValidatorType<typeof isHuman>
+type Human = blaze.InferValidatorType<typeof isHuman>
 
 export const onlyAcceptHumans = (payload: any): Promise<Human> => {
   // throw if payload doesn't match schema
-  const human = ensure(payload, isHuman) 
+  const human = blaze.ensure(payload, isHuman) 
 
   // now your IDE/Editor can also complete this
   console.log(`Creating human with name "${human.name}".`)
@@ -41,7 +43,7 @@ The `object` validator matches standard TypeScript behaviour, i.e. it doesn't co
 
 ## Provided Types
 
-Currently the following types are supported: `object`, `array`, `string`, `number`, `oneOf([ ...unionTypes ])`, `string literal` (using `string('literal')`) and `number literal` (using `number(1)`).
+Currently the following types are supported: `object`, `array`, `string`, `number`, `oneOf([ ...unionTypes ])`, `undefined`, `null`, `string literal` (using `string('literal')`) and `number literal` (using `number(1)`).
 
 ### Options
 
@@ -51,10 +53,10 @@ You can overwrite `JSON.parse(...)` while validating in order to not have to par
 ### Define Your Own
 
 ```ts
-import { string } from 'ts-blaze'
+import * as blaze from 'ts-blaze'
 import { validate: isUuid } from 'uuid'
 
-export const uuid = string()
+export const uuid = blaze.string()
   .satisfies(isUuid)
 ```
 
