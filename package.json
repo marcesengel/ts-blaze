@@ -1,6 +1,6 @@
 {
   "name": "ts-blaze",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Have a blast validating objects in TypeScript.",
   "main": "dist/ts-blaze.js",
   "types": "dist/ts-blaze.d.ts",
