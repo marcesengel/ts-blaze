@@ -11,6 +11,7 @@ export { default as oneOf, UnionTypeValidator } from './validators/union'
 export { default as boolean, BooleanValidator } from './validators/boolean'
 export { default as undefined, UndefinedValidator } from './validators/undefined'
 export { default as null, NullValidator } from './validators/null'
+export { default as any, AnyValidator } from './validators/any'
 
 export { Validator } from './validator'
 

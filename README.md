@@ -43,7 +43,7 @@ The `object` validator matches standard TypeScript behaviour, i.e. it doesn't co
 
 ## Provided Types
 
-Currently the following types are supported: `object`, `array`, `string`, `number`, `oneOf([ ...unionTypes ])`, `undefined`, `null`, `string literal` (using `string('literal')`) and `number literal` (using `number(1)`).
+Currently the following types are supported: `object`, `array`, `string`, `number`, `oneOf([ ...unionTypes ])`, `undefined`, `null`, `any`, `string literal` (using `string('literal')`) and `number literal` (using `number(1)`).
 
 ### Options
 
