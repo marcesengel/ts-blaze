@@ -7,8 +7,8 @@ export interface AnyValidator extends Validator<any> {
 const createAnyValidator = (): AnyValidator => {
   const validateAny = createValidator<AnyValidator>(
     (validators, applyValidators) =>
-      (value: any): true =>
-        true
+      (value: any): value is any =>
+        applyValidators(value)
   )
 
   return validateAny
