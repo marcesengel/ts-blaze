@@ -1,4 +1,4 @@
-import { number, object, string } from '../../ts-blaze'
+import { number, object, optional, string } from '../../ts-blaze'
 
 describe('object', () => {
   it('fails for null', () => {
@@ -40,5 +40,50 @@ describe('object', () => {
     const validate = object({})
 
     expect(validate({ test: true })).toBe(true)
+  })
+
+  describe('exact', () => {
+    const isHuman = object({
+      name: string(),
+      age: number()
+    }).exact()
+
+    it('accepts matching objects', () => {
+      const betty: any = {
+        name: 'Betty',
+        age: 21
+      }
+
+      expect(isHuman(betty)).toBe(true)
+    })
+
+    it('rejects when missing keys', () => {
+      const betty: any = {
+        name: 'Betty'
+      }
+
+      expect(isHuman(betty)).toBe(false)
+    })
+
+    it('rejects when there are additional keys', () => {
+      const betty: any = {
+        name: 'Betty',
+        age: 21,
+        city: 'Berlin'
+      }
+
+      expect(isHuman(betty)).toBe(false)
+    })
+
+    it('allows optional properties to be missing', () => {
+      const isEntity = object({
+        id: string(),
+        name: optional(string())
+      })
+
+      expect(isEntity({
+        id: '123'
+      })).toBe(true)
+    })
   })
 })
