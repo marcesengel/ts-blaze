@@ -1,10 +1,10 @@
-import { number, object, string, oneOf } from '../../ts-blaze'
+import * as blaze from '../../ts-blaze'
 
 describe('oneOf', () => {
   it('works', () => {
-    const isEvent = oneOf([
-      object({ type: string('START') }),
-      object({ type: string('FINISH'), resultCode: number() })
+    const isEvent = blaze.oneOf([
+      blaze.object({ type: blaze.string('START') }),
+      blaze.object({ type: blaze.string('FINISH'), resultCode: blaze.number() })
     ])
 
     const value: any = 1
@@ -21,9 +21,9 @@ describe('oneOf', () => {
   })
 
   it('supports type inference in predicates', () => {
-    oneOf([
-      number(),
-      string()
+    blaze.oneOf([
+      blaze.number(),
+      blaze.string()
     ])
       .satisfies(val => assertType<string | number>(val))
       // @ts-expect-error
