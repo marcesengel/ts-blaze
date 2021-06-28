@@ -12,6 +12,7 @@ export { default as boolean, BooleanValidator } from './validators/boolean'
 export { default as undefined, UndefinedValidator } from './validators/undefined'
 export { default as null, NullValidator } from './validators/null'
 export { default as any, AnyValidator } from './validators/any'
+export { default as record, RecordValidator } from './validators/record'
 
 export { Validator } from './validator'
 
