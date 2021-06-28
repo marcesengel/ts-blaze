@@ -1,4 +1,5 @@
 import { createValidator, createNotImplementedHandler, Validator } from '../validator'
+import { ensureError } from '../ensure'
 
 export interface StringValidator<T extends string> extends Validator<T> {
   json(): StringValidator<T>;
@@ -7,7 +8,7 @@ export interface StringValidator<T extends string> extends Validator<T> {
 const createStringValidator = <T extends string = string>(literal?: T): StringValidator<T> => {
   if (typeof literal !== 'undefined') {
     const validateStringLiteral = (value: any): value is T =>
-      value === literal
+      ensureError(`equal '${literal}'`, value === literal)
     
     const notImplemented = createNotImplementedHandler('string literals')
     validateStringLiteral.satisfies = notImplemented
@@ -19,10 +20,11 @@ const createStringValidator = <T extends string = string>(literal?: T): StringVa
   const validateString = createValidator<StringValidator<T>>(
     (validators, applyValidators) => {
       const validate = (value: any): value is T =>
-        typeof value === 'string' && applyValidators(value as T)
+        ensureError('be type string', typeof value === 'string') &&
+        applyValidators(value as T)
       
       validate.json = () => {
-        validators.push(isJson)
+        validators.push((value) => ensureError('be json string', isJson(value)))
 
         return validate as StringValidator<T>
       }
