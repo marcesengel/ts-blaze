@@ -1,3 +1,9 @@
+# Deprecation Notice
+
+At the time of writing this, I was unaware of some bigger project which try to achieve the same but have better community support. For alternatives please see [zod](https://zod.dev/) or packages inspired by it if performance matters to you, as zod tends to be pretty slow (f.e. see [myzod](https://www.npmjs.com/package/myzod)).
+
+Here's the old README:
+
 # ts-blaze
 
 This library makes type-safe usage of objects from unknown origin (-> api payloads, events, parsed files etc.) a blast.
